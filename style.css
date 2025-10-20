@@ -1,0 +1,279 @@
+:root {
+    --color-p1: #E53935;
+    --color-p2: #1E88E5;
+    --color-p3: #43A047;
+    --color-p4: #FFB300;
+    
+    --main-bg-color: #7CB342;
+    --box-color: #FFFFFF;
+    --box-border-color: #388E3C;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('rumput.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+#app-container {
+    background-color: rgba(0, 0, 0, 0.10); 
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+    display: flex;
+    flex-direction: column;
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* --- HOME SCREEN --- */
+#home-screen {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.menu-option {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.main-button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: skyblue;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-button:hover {
+    background-color: #388E3C;
+}
+
+/* Pemilihan Warna */
+.color-selection {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.color-option.selected {
+    border-color: #333;
+    transform: scale(1.1);
+}
+
+.color-option.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: transparent !important;
+    transform: none !important;
+}
+
+.color-option.disabled.selected {
+    opacity: 0.3;
+}
+
+#board-container {
+    max-width: 500px; 
+    max-height: 500px;
+    width: 90vmin; 
+    height: 90vmin;
+    box-sizing: border-box; 
+    position: relative; 
+    border: 8px solid var(--box-border-color); 
+    border-radius: 10px;
+    overflow: hidden; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+#game-screen {
+    flex-direction: row;
+    align-items: center;
+}
+
+#board-visual {
+    width: 100%;
+    height: 100%;
+    background-image: url('ulartangga.jpeg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+#board-markers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.player-token {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease-in-out; 
+}
+
+.player-token.no-transition {
+    transition: none !important;
+}
+
+#control-panel {
+    background-color: var(--box-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    width: 250px;
+    text-align: center;
+}
+
+#current-player-info {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#dice-area {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#dice {
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border: none; 
+    border-radius: 12px;
+    margin: 0 auto 15px;
+    
+    display: block;
+    
+    transition: transform 0.2s ease-out;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+#dice:not(.rolling):hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+#dice.dice-face-1 { 
+    background-image: url('dad1.jpg');
+}
+#dice.dice-face-2 { 
+    background-image: url('dad2.jpg');
+}
+#dice.dice-face-3 { 
+    background-image: url('dad3.jpg');
+}
+#dice.dice-face-4 { 
+    background-image: url('dad4.jpg');
+}
+#dice.dice-face-5 { 
+    background-image: url('dad5.jpg');
+}
+#dice.dice-face-6 { 
+    background-image: url('dad6.jpg');
+}
+
+@keyframes throwAndRoll {
+    0% { 
+        transform: translate(0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg); 
+    }
+    30% { 
+        transform: translate(10px, -50px) rotateX(180deg) rotateY(360deg) rotateZ(90deg);
+    }
+    60% { 
+        transform: translate(-10px, -70px) rotateX(360deg) rotateY(720deg) rotateZ(180deg);
+    }
+    100% { 
+        transform: translate(0, 0) rotateX(720deg) rotateY(1080deg) rotateZ(360deg);
+    }
+}
+
+#dice.rolling {
+    animation: throwAndRoll 1.5s ease-out forwards; 
+    animation-fill-mode: forwards; 
+}
+
+#roll-dice-btn {
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+#roll-dice-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#roll-result-text {
+    font-size: 1.1em;
+    margin-top: 10px;
+    min-height: 20px;
+}
+
+#new-game-btn {
+    padding: 8px 15px;
+    font-size: 1em;
+    background-color: #FF5722; 
+}
+
+#new-game-btn:hover {
+    background-color: #E64A19;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 800px) {
+    #game-screen {
+        flex-direction: column;
+        gap: 15px;
+    }
+    #board-container {
+        width: 100%;
+        height: auto;
+    }
+    #control-panel {
+        width: 100%;
+    }
+}

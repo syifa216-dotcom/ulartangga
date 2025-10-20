@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ular Tangga</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <div id="app-container">
+
+        <div id="home-screen" class="screen active">
+            <h1>🐍 Ular Tangga 🪜</h1>
+            
+            <div class="menu-option">
+                <label for="player-count">Jumlah Pemain:</label>
+                <select id="player-count">
+                    <option value="2">2 Pemain</option>
+                    <option value="3">3 Pemain</option>
+                    <option value="4">4 Pemain</option>
+                </select>
+            </div>
+
+            <div class="menu-option">
+                <p>Pilih Warna Pion:</p>
+                <div id="player-color-selection" class="color-selection">
+                    </div>
+            </div>
+
+            <button id="start-game-btn" class="main-button">Mulai Permainan</button>
+        </div>
+
+        <div id="game-screen" class="screen" style="display: none;">
+            
+            <div id="game-layout">
+                
+                <div id="board-container">
+                    <div id="board-visual"></div> 
+                    
+                    <div id="board-markers"></div> 
+                    
+                    </div>
+
+            </div>
+
+            <div id="control-panel">
+                <h2 id="current-player-info">Giliran Pemain 1</h2>
+                
+                <div id="dice-area">
+                    <div id="dice" class="dice-face-1"></div>
+                    <button id="roll-dice-btn" class="hidden">Lempar Dadu</button>
+                    <p id="roll-result-text">Hasil Dadu: -</p>
+                </div>
+                
+                <button id="new-game-btn" class="hidden">Main Lagi</button>
+            </div>
+
+        </div>
+    </div>
+    <audio id="sound-roll" src="dice-95077.mp3" preload="auto"></audio>
+    <audio id="sound-ladder" src="ladder.mp3" preload="auto"></audio>
+    <audio id="sound-snake" src="snake.mp3" preload="auto"></audio>
+    <audio id="sound-win" src="win.wav" preload="auto"></audio>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script> 
+    <script src="./script.js"></script>
+</body>
+</html>
